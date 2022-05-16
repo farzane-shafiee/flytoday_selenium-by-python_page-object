@@ -7,7 +7,7 @@ def get_data():
     :return: list of dic from yaml file.
     """
     LOGGER.debug('Trying to read inputs.')
-    with open('LoginTests\csv.yml') as file:
+    with open('LoginTests\\csv.yml', 'r') as file:
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:

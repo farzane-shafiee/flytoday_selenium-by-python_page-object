@@ -1,7 +1,6 @@
 import time
 import unittest
 import warnings
-
 from selenium import webdriver
 from LoginTests.utils import login_assertion, get_data
 from LoginTests.statics import LOGGER
@@ -9,7 +8,7 @@ from .locators import *
 from selenium.webdriver.chrome.options import Options
 
 
-class Test(unittest.TestCase):
+class TestCase_Login(unittest.TestCase):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
 
@@ -17,8 +16,7 @@ class Test(unittest.TestCase):
         """
         :return: Open browser by URL or exception None.
         """
-        self.driver = webdriver.Chrome('D:\Software\chromedriver_win32\chromedriver.exe',
-                                       chrome_options=self.chrome_options)
+        self.driver = webdriver.Chrome('D:\Farzan\chromedriver_win32\chromedriver.exe')
         try:
             self.driver.get('https://betademo.flytoday.ir/')
             warnings.simplefilter('ignore', ResourceWarning)
@@ -68,7 +66,7 @@ class Test(unittest.TestCase):
             time.sleep(2)
             LOGGER.debug('Click the "login" button.')
             login_assertion(data, index, driver=self.driver)
-            self.tear_down()
+            # self.tear_down()
 
 
 if __name__ == '__main__':
