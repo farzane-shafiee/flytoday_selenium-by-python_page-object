@@ -1,5 +1,5 @@
 import yaml
-from LoginTests.statics import LOGGER
+from statics import LOGGER
 
 
 def get_data():
@@ -7,7 +7,7 @@ def get_data():
     :return: list of dic from yaml file.
     """
     LOGGER.debug('Trying to read inputs.')
-    with open('LoginTests\\csv.yml', 'r') as file:
+    with open('LoginTests/csv.yml', 'r') as file:
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
