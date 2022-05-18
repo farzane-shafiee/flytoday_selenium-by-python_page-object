@@ -18,16 +18,16 @@ class TestCase(unittest.TestCase):
         LOGGER.debug('Inputs read completely.')
         for index in range(len(data)):
             driverSetup = setup()
-            login_test(driverSetup, data, index)
-            login_assertion(driverSetup, data, index)
+            login_test(data, index, driverSetup)
+            login_assertion(data, index, driverSetup)
 
     def test_hotel(self):
         data = get_data()
         LOGGER.debug('Inputs read completely.')
         for index in range(len(data)):
-            setup()
-            login_test()
-            online_Hotel_Booking_test()
+            driverSetup = setup()
+            login_test(data, index, driverSetup)
+            online_Hotel_Booking_test(driverSetup)
 
 
 if __name__ == '__main__':

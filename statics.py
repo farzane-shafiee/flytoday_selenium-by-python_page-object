@@ -48,7 +48,7 @@ def tear_down(driverSetup):
     # DRIVER.quit()
 
 
-def login_test(driverSetup, data, index):
+def login_test(data, index, driverSetup):
     """
     Several user login.
     :return:
