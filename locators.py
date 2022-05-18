@@ -10,4 +10,4 @@ login_button_xpath = '//button[@type="primary"] [text()="ورود"]'
 """
 Booking Hotel Online
 """
-hotel_button_xpath = '//li[@data-test="serviceTab"] [text()="هتل"]'
+hotel_button_xpath = '//*[@id="__next"]/div/div[3]/div/ul/li[3]'
