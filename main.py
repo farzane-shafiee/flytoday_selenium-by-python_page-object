@@ -1,7 +1,7 @@
 import sys
 import unittest
 
-sys.path.insert(0, 'C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday')
+sys.path.insert(0, 'D:/Farzan/flytoday')
 
 from statics import *
 from selenium.webdriver.chrome.options import Options
@@ -14,7 +14,7 @@ class TestCase(unittest.TestCase):
     chrome_options.add_argument("--headless")
 
     def test_login(self):
-        data = get_data()
+        data = get_data_login()
         LOGGER.debug('Inputs read completely.')
         for index in range(len(data)):
             driverSetup = setup()
@@ -22,12 +22,13 @@ class TestCase(unittest.TestCase):
             login_assertion(data, index, driverSetup)
 
     def test_hotel(self):
-        data = get_data()
-        LOGGER.debug('Inputs read completely.')
-        for index in range(len(data)):
-            driverSetup = setup()
-            login_test(data, index, driverSetup)
-            online_Hotel_Booking_test(driverSetup)
+        # data_login = get_data_login()
+        # LOGGER.debug('Inputs read completely.')
+        # for index in range(len(data_login)):
+        driverSetup = setup()
+        # login_test(data_login, index, driverSetup)
+        data_hotel = get_data_hotel()
+        online_Hotel_Booking_test(data_hotel, driverSetup)
 
 
 if __name__ == '__main__':

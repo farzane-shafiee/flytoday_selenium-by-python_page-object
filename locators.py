@@ -10,4 +10,10 @@ login_button_xpath = '//button[@type="primary"] [text()="ورود"]'
 """
 Booking Hotel Online
 """
-hotel_button_xpath = '//*[@id="__next"]/div/div[3]/div/ul/li[3]'
+hotel_button_xpath = '//div[@class="tabs_text__6YpmA"] [text()="هتل"]'
+hotelCity_selectBox_xpath = '//button[@data-test="hotelCitySelectBox"]'
+startDatePicker_selectBox_xpath = '//button[@data-test="startDatePicker"]'
+endDatePicker_selectBox_xpath = '//button[@data-test="endDatePicker"]'
+today_button_xpath = '//span[@class="day_todayText__Ai_Wv"] [text()="امروز"]'
+monthList_div_xpath = '//*[@id="__next"]/div/div[2]/div[1]/div/div/div[2]/div[2]/' \
+                      'div/div/div[4]/div[2]/div[2]/div/div[2]/div[2]/div[2]'
