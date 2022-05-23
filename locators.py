@@ -17,3 +17,5 @@ endDatePicker_selectBox_xpath = '//button[@data-test="endDatePicker"]'
 today_button_xpath = '//span[@class="day_todayText__Ai_Wv"] [text()="امروز"]'
 monthList_div_xpath = '//*[@id="__next"]/div/div[2]/div[1]/div/div/div[2]/div[2]/' \
                       'div/div/div[4]/div[2]/div[2]/div/div[2]/div[2]/div[2]'
+confirmDatePiker_button_xpath = '//button[@class="button_primaryBtn__L9gAL footer_closeButton__AdqEJ"] [text()="تایید"]'
+searchButton_button_xpath = '//button[@class="button_primaryBtn__L9gAL search-button"]'

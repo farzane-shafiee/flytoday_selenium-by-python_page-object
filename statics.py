@@ -1,6 +1,8 @@
 from autoutils.log import Logger
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+
 from locators import *
 import warnings
 import yaml
@@ -11,7 +13,7 @@ LOGGER.setLevel('DEBUG')
 
 
 def driver_setup():
-    driver = webdriver.Chrome('D:/Farzan/chromedriver_win32/chromedriver.exe')
+    driver = webdriver.Chrome('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/chromedriver_win32/chromedriver.exe')
     return driver
 
 
@@ -20,7 +22,7 @@ def get_data_login():
     :return: list of dic from yaml file.
     """
     LOGGER.debug('Trying to read inputs.')
-    with open('D:/Farzan/flytoday/data_login.yaml', 'r') as file:
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_login.yaml', 'r') as file:
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
@@ -34,6 +36,7 @@ def setup():
     driverSetup = driver_setup()
     try:
         driverSetup.get('https://betademo.flytoday.ir/')
+        driverSetup.maximize_window()
         warnings.simplefilter('ignore', ResourceWarning)
         LOGGER.debug('Open the browser ...')
         return driverSetup
@@ -87,7 +90,7 @@ def login_test(data, index, driverSetup):
 
 def get_data_hotel():
     LOGGER.debug('Trying to read inputs hotel.')
-    with open('D:/Farzan/flytoday/data_hotel.yaml', 'r') as file:
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
@@ -95,25 +98,31 @@ def get_data_hotel():
 
 
 def datePiker(driverSetup, data_hotel):
-    element = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[3]/div/div/div/div[2]/div[2]/div/div/'
-                                                  'div[4]/div[2]/div[2]/div/div[2]/div[2]/div[2]')
-    days = element.find_elements_by_class_name('month_flexDayStyle__Sp81_')
-    print(days)
+    action = ActionChains(driverSetup)
+    month = driverSetup.find_element(by=By.XPATH, value='/html/body/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]/div[2]/div/div[2]/div[2]/div[2]')
+    days = month.find_elements(by=By.CLASS_NAME, value='month_flexDayStyle__Sp81_')
     LOGGER.debug('Read date piker list.')
-    for day in days:
-        print(day.text)
-        if day.text == data_hotel.get(0).get('startDate'):
-            day.click()
-            time.sleep(5)
-        # if y.text == data_hotel.get(0).get('endDate'):
-        #     y.click()
-    time.sleep(5)
-    print("ok")
-    # words = elements[0].text.split('\n')
-    # for index in elements:
-    #     if words[index] == data_hotel.get(0).get('startDate'):
-    #         elements[index].click()
-    #         break
+
+    for startDate in days:
+        print(startDate.text)
+        if startDate.text == data_hotel.get(0).get('startDate'):
+            action.move_to_element(startDate).click().perform()
+            LOGGER.debug('Select start date.')
+            break
+        else:
+            LOGGER.debug('Start date is reading.')
+
+    for endDate in days:
+        if endDate.text == data_hotel.get(0).get('endDate'):
+            action.move_to_element(endDate).click().perform()
+            LOGGER.debug('Select end date.')
+            break
+        else:
+            LOGGER.debug('End date is reading.')
+    time.sleep(2)
+    searchButton = driverSetup.find_element('xpath', confirmDatePiker_button_xpath)
+    action.move_to_element(searchButton).click().perform()
+    time.sleep(10)
 
 
 def online_Hotel_Booking_test(data_hotel, driverSetup):
@@ -121,22 +130,27 @@ def online_Hotel_Booking_test(data_hotel, driverSetup):
     time.sleep(3)
     hotel_button = driverSetup.find_element('xpath', hotel_button_xpath)
     hotel_button.click()
-    print(hotel_button_xpath)
     LOGGER.debug('Click the hotel.')
     time.sleep(3)
     hotel_city = driverSetup.find_element('xpath', hotelCity_selectBox_xpath)
     hotel_city.click()
     LOGGER.debug('Click the hotel city.')
     action.move_to_element(hotel_city).send_keys(data_hotel.get(0).get('hotelCity')).click().perform()
-    # hotel_city.send_keys(data_hotel.get(0).get('hotelCity'))
-    # hotel_city.click()
     time.sleep(5)
-    print(data_hotel.get(0).get('hotelCity'))
-    city = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[3]/div/div/div/div[2]/div[1]'
-                                             '/div/button/div[2]/div[2]/div[3]/div[1]')
-    action.move_to_element(city).click().perform()
+    cityList = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[2]/div/div/div/div[2]/div[1]/div/button/'
+                                                 'div[2]/div[2]/div[3]')
+    cities = cityList.find_elements(by=By.CLASS_NAME, value='w-100')
+    for city in cities:
+        LOGGER.debug('City is reading.')
+        if city.text == data_hotel.get(0).get('hotelCity'):
+            time.sleep(3)
+            action.move_to_element(city).click().perform()
+            LOGGER.debug('Select city.')
+            break
+        else:
+            LOGGER.debug('city is out off list.')
     LOGGER.debug('insert hotel city.')
-    time.sleep(10)
+    time.sleep(3)
     datePiker(driverSetup, data_hotel)
 
 
