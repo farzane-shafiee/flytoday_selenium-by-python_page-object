@@ -29,6 +29,15 @@ def get_data_login():
             print(exc)
 
 
+def get_data_hotel():
+    LOGGER.debug('Trying to read inputs hotel.')
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:
+        try:
+            return yaml.safe_load(file)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+
 def setup():
     """
     :return: Open browser by URL or exception None.
@@ -58,8 +67,7 @@ def login_test(data, index, driverSetup):
     :return:
         Login done.
     """
-    # data = get_data()
-    LOGGER.debug('Inputs read completely.')
+    action = ActionChains(driverSetup)
     time.sleep(2)
     driverSetup.find_element('xpath',
                              entry_button_xpath).click()  # login or register button
@@ -67,20 +75,18 @@ def login_test(data, index, driverSetup):
     time.sleep(2)
     username = driverSetup.find_element('name',
                                         username_textbox_name)
-    username.click()
-    username.send_keys(data.get(index).get('username'))
+    action.move_to_element(username).click().\
+        send_keys(data.get(index).get('username')).click().perform()
     LOGGER.debug('Send keys username.')
     time.sleep(3)
     driverSetup.find_element('xpath',
                              continue_button_xpath).click()
     LOGGER.debug('Click the "continue" button.')
-    time.sleep(3)
+    time.sleep(2)
     password = driverSetup.find_element('xpath',
                                         password_textbox_xpath)
-    password.click()
-    password.send_keys(data.get(index).get('password'))
-    ee = data.get(3).get('password')
-    print(ee)
+    action.move_to_element(password).click().\
+        send_keys(data.get(index).get('password')).click().perform()
     LOGGER.debug('Send keys password.')
     driverSetup.find_element('xpath',
                              login_button_xpath).click()  # Login button
@@ -88,23 +94,13 @@ def login_test(data, index, driverSetup):
     LOGGER.debug('Click the "login" button.')
 
 
-def get_data_hotel():
-    LOGGER.debug('Trying to read inputs hotel.')
-    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:
-        try:
-            return yaml.safe_load(file)
-        except yaml.YAMLError as exc:
-            print(exc)
-
-
 def datePiker(driverSetup, data_hotel):
     action = ActionChains(driverSetup)
-    month = driverSetup.find_element(by=By.XPATH, value='/html/body/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]/div[2]/div/div[2]/div[2]/div[2]')
-    days = month.find_elements(by=By.CLASS_NAME, value='month_flexDayStyle__Sp81_')
+    month = driverSetup.find_element(by=By.XPATH, value=month_list_xpath)
+    days = month.find_elements(by=By.CLASS_NAME, value=daysList_className)
     LOGGER.debug('Read date piker list.')
 
     for startDate in days:
-        print(startDate.text)
         if startDate.text == data_hotel.get(0).get('startDate'):
             action.move_to_element(startDate).click().perform()
             LOGGER.debug('Select start date.')
@@ -120,8 +116,9 @@ def datePiker(driverSetup, data_hotel):
         else:
             LOGGER.debug('End date is reading.')
     time.sleep(2)
-    searchButton = driverSetup.find_element('xpath', confirmDatePiker_button_xpath)
-    action.move_to_element(searchButton).click().perform()
+    driverSetup.find_element('xpath', confirmDatePiker_button_xpath).click()
+    driverSetup.find_element('xpath', searchButton_button_xpath).click()
+    LOGGER.debug('Search hotel is completed.')
     time.sleep(10)
 
 
@@ -137,8 +134,7 @@ def online_Hotel_Booking_test(data_hotel, driverSetup):
     LOGGER.debug('Click the hotel city.')
     action.move_to_element(hotel_city).send_keys(data_hotel.get(0).get('hotelCity')).click().perform()
     time.sleep(5)
-    cityList = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[2]/div/div/div/div[2]/div[1]/div/button/'
-                                                 'div[2]/div[2]/div[3]')
+    cityList = driverSetup.find_element('xpath', cityList_xpath)
     cities = cityList.find_elements(by=By.CLASS_NAME, value='w-100')
     for city in cities:
         LOGGER.debug('City is reading.')
@@ -162,3 +158,7 @@ def login_assertion(data, index, driverSetup):
     LOGGER.debug(f'Assertion: {actual_result} Compare with {data.get(index).get("username")}')
     assert actual_result == data.get(index).get("username")
     LOGGER.debug('--------------------- ')
+
+
+def hotelBooking_assertion(data, index, driverSetup):
+    pass

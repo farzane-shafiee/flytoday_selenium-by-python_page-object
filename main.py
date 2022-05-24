@@ -29,6 +29,7 @@ class TestCase(unittest.TestCase):
         # login_test(data_login, index, driverSetup)
         data_hotel = get_data_hotel()
         online_Hotel_Booking_test(data_hotel, driverSetup)
+        hotelBooking_assertion(data_hotel, driverSetup)
 
 
 if __name__ == '__main__':
