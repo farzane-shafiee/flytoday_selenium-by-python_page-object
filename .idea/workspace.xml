@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a0e945e-f963-4523-a068-8b0cf8843d6c" name="Changes" comment="1401-2-30">
+    <list default="true" id="7a0e945e-f963-4523-a068-8b0cf8843d6c" name="Changes" comment="1401-3-8&#10;V2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils_hotel.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils_hotel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +77,14 @@
       <option name="presentableId" value="Default" />
       <updated>1652892303637</updated>
     </task>
+    <task id="LOCAL-00001" summary="1401-3-8&#10;V2">
+      <created>1653847385625</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653847385625</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -89,5 +98,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1401-3-8&#10;V2" />
+    <option name="LAST_COMMIT_MESSAGE" value="1401-3-8&#10;V2" />
   </component>
 </project>

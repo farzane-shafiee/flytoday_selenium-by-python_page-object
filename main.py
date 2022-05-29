@@ -29,8 +29,8 @@ class TestCase(unittest.TestCase):
         driverSetup = setup()
         # login_test(data_login, index, driverSetup)
         data_hotel = get_data_hotel()
-        online_Hotel_test(data_hotel, driverSetup)
-        hotelBooking_assertion(driverSetup)
+        hotel_search(data_hotel, driverSetup)
+        hotel_booking_assertion(driverSetup)
 
 
 if __name__ == '__main__':

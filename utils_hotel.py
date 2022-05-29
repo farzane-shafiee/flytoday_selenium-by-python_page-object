@@ -13,7 +13,7 @@ def get_data_hotel():
             print(exc)
 
 
-def online_Hotel_test(data_hotel, driverSetup):
+def hotel_search(data_hotel, driverSetup):
     action = ActionChains(driverSetup)
     time.sleep(1)
     hotel_button = driverSetup.find_element('xpath', hotel_button_xpath)
@@ -47,8 +47,29 @@ def hotel_result_search(driverSetup):
     return hotels
 
 
-def hotelBooking_assertion(driverSetup):
+def hotel_booking_assertion(driverSetup):
     time.sleep(20)
     LOGGER.debug('Assertion is Checking...')
     hotels = hotel_result_search(driverSetup)
     assert len(hotels) > 0
+
+
+def adding_adult(driverSetup):
+    element = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]'
+                                                '/div[2]/div/div[2]/div[2]/button[1]')
+    element.click()
+
+
+def adding_child(driverSetup):
+    element = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]'
+                                                '/div[2]/div/div[3]/div[2]/button[1]')
+    element.click()
+
+
+def adding_room(driverSetup):
+    element = driverSetup.find_element('xpath', '//button[@data-test="addRoomBtn"]')
+    element.click()
+
+
+def hotel_booking():
+    pass
