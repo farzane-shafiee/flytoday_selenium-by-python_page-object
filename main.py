@@ -2,8 +2,9 @@ import sys
 import unittest
 
 sys.path.insert(0, 'D:/Farzan/flytoday')
-
+from utils_booking_hotel import *
 from statics import *
+from utils_login import *
 from selenium.webdriver.chrome.options import Options
 
 current_driver = None
@@ -28,8 +29,8 @@ class TestCase(unittest.TestCase):
         driverSetup = setup()
         # login_test(data_login, index, driverSetup)
         data_hotel = get_data_hotel()
-        online_Hotel_Booking_test(data_hotel, driverSetup)
-        hotelBooking_assertion(data_hotel, driverSetup)
+        online_Hotel_test(data_hotel, driverSetup)
+        hotelBooking_assertion(driverSetup)
 
 
 if __name__ == '__main__':

@@ -18,6 +18,4 @@ month_list_xpath = '/html/body/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/
 daysList_className = 'month_flexDayStyle__Sp81_'
 confirmDatePiker_button_xpath = '//button[@class="button_primaryBtn__L9gAL footer_closeButton__AdqEJ"] [text()="تایید"]'
 searchButton_button_xpath = '//button[@class="button_primaryBtn__L9gAL search-button"]'
-
-
-# //*[@id="__next"]/div/div[2]/div[2]/div/div/div/div[2]
+hotelList_list_xpath = '//*[@id="__next"]/div/div[2]/div[2]/div/div/div/div[2]'
