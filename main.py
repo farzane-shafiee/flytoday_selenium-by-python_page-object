@@ -2,7 +2,7 @@ import sys
 import unittest
 
 sys.path.insert(0, 'D:/Farzan/flytoday')
-from utils_booking_hotel import *
+from utils_hotel import *
 from statics import *
 from utils_login import *
 from selenium.webdriver.chrome.options import Options

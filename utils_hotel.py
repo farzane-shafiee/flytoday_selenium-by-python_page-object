@@ -41,9 +41,14 @@ def online_Hotel_test(data_hotel, driverSetup):
     datePiker(driverSetup, data_hotel)
 
 
+def hotel_result_search(driverSetup):
+    hotelList = driverSetup.find_element('xpath', hotelList_list_xpath)
+    hotels = hotelList.find_elements(by=By.CLASS_NAME, value='itineray-list_itineraryWrapper__KEXFz')
+    return hotels
+
+
 def hotelBooking_assertion(driverSetup):
     time.sleep(20)
-    hotelList = driverSetup.find_element('xpath', hotelList_list_xpath)
     LOGGER.debug('Assertion is Checking...')
-    hotels = hotelList.find_elements(by=By.CLASS_NAME, value='itineray-list_itineraryWrapper__KEXFz')
+    hotels = hotel_result_search(driverSetup)
     assert len(hotels) > 0
