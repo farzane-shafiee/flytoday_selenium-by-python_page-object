@@ -1,0 +1,135 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import sys\r\nimport unittest\r\n\r\nsys.path.insert(0, 'D:/Farzan/flytoday')\r\nfrom utils_booking_hotel import *\r\nfrom statics import *\r\nfrom utils_login import *\r\nfrom selenium.webdriver.chrome.options import Options\r\n\r\ncurrent_driver = None\r\n\r\n\r\nclass TestCase(unittest.TestCase):\r\n    chrome_options = Options()\r\n    chrome_options.add_argument(\"--headless\")\r\n\r\n    def test_login(self):\r\n        data = get_data_login()\r\n        LOGGER.debug('Inputs read completely.')\r\n        for index in range(len(data)):\r\n            driverSetup = setup()\r\n            login_test(data, index, driverSetup)\r\n            login_assertion(data, index, driverSetup)\r\n\r\n    def test_hotel(self):\r\n        # data_login = get_data_login()\r\n        # LOGGER.debug('Inputs read completely.')\r\n        # for index in range(len(data_login)):\r\n        driverSetup = setup()\r\n        # login_test(data_login, index, driverSetup)\r\n        data_hotel = get_data_hotel()\r\n        online_Hotel_test(data_hotel, driverSetup)\r\n        hotelBooking_assertion(driverSetup)\r\n\r\n\r\nif __name__ == '__main__':\r\n    unittest.main(warnings='ignore')\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 2087cb66af0345ed6f2815f2feef564f59e1262d)
++++ b/main.py	(date 1653830610536)
+@@ -2,7 +2,7 @@
+ import unittest
+ 
+ sys.path.insert(0, 'D:/Farzan/flytoday')
+-from utils_booking_hotel import *
++from utils_hotel import *
+ from statics import *
+ from utils_login import *
+ from selenium.webdriver.chrome.options import Options
+@@ -29,7 +29,8 @@
+         driverSetup = setup()
+         # login_test(data_login, index, driverSetup)
+         data_hotel = get_data_hotel()
+-        online_Hotel_test(data_hotel, driverSetup)
++        hotel_search_test(data_hotel, driverSetup)
++        hotel_booking_test(data_hotel, driverSetup)
+         hotelBooking_assertion(driverSetup)
+ 
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"7a0e945e-f963-4523-a068-8b0cf8843d6c\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/Test Atomation FlyToday.iml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/data_hotel.yaml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.gitignore\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/other.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/csv.yaml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data_login.yaml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/locators.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/locators.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/main.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/statics.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/statics.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"29LVKuyRd13u7Sh3H6tj9sjPfVz\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"GitStage.ChangesTree.GroupingKeys\" value=\"directory&#10;module&#10;repository\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable\" />\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python tests.Unittests for main.TestCase.test_hotel\">\r\n    <configuration name=\"Unittests for main.TestCase.test_hotel\" type=\"tests\" factoryName=\"Unittests\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"flytoday\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"_new_additionalArguments\" value=\"&quot;&quot;\" />\r\n      <option name=\"_new_target\" value=\"&quot;main.TestCase.test_hotel&quot;\" />\r\n      <option name=\"_new_targetType\" value=\"&quot;PYTHON&quot;\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Unittests for main.TestCase.test_login\" type=\"tests\" factoryName=\"Unittests\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"flytoday\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"_new_additionalArguments\" value=\"&quot;&quot;\" />\r\n      <option name=\"_new_target\" value=\"&quot;main.TestCase.test_login&quot;\" />\r\n      <option name=\"_new_targetType\" value=\"&quot;PYTHON&quot;\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python tests.Unittests for main.TestCase.test_hotel\" />\r\n        <item itemvalue=\"Python tests.Unittests for main.TestCase.test_login\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"7a0e945e-f963-4523-a068-8b0cf8843d6c\" name=\"Changes\" comment=\"\" />\r\n      <created>1652892303637</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1652892303637</updated>\r\n      <workItem from=\"1653301588272\" duration=\"74000\" />\r\n      <workItem from=\"1653301663584\" duration=\"9401000\" />\r\n      <workItem from=\"1653385914884\" duration=\"5645000\" />\r\n      <workItem from=\"1653453973576\" duration=\"6563000\" />\r\n      <workItem from=\"1653824224719\" duration=\"4511000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"1401-3-2\">\r\n      <created>1653312430268</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653312430268</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"1401-3-3\">\r\n      <created>1653399021519</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653399021519</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"1401-3-2\" />\r\n    <MESSAGE value=\"1401-3-3\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"1401-3-3\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/flytoday$Unittests_for_main_TestCase_test_login.coverage\" NAME=\"Unittests for main.TestCase.test_login Coverage Results\" MODIFIED=\"1653828627340\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\r\n    <SUITE FILE_PATH=\"coverage/flytoday$Unittests_for_main_TestCase_test_hotel.coverage\" NAME=\"Unittests for main.TestCase.test_hotel Coverage Results\" MODIFIED=\"1653829305557\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2087cb66af0345ed6f2815f2feef564f59e1262d)
++++ b/.idea/workspace.xml	(date 1653831190471)
+@@ -109,7 +109,7 @@
+       <workItem from="1653301663584" duration="9401000" />
+       <workItem from="1653385914884" duration="5645000" />
+       <workItem from="1653453973576" duration="6563000" />
+-      <workItem from="1653824224719" duration="4511000" />
++      <workItem from="1653824224719" duration="6345000" />
+     </task>
+     <task id="LOCAL-00001" summary="1401-3-2">
+       <created>1653312430268</created>
+@@ -125,7 +125,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1653399021519</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="1401-3-8">
++      <created>1653829518664</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1653829518664</updated>
++    </task>
++    <task id="LOCAL-00004" summary="1401-3-8&#10;V2">
++      <created>1653831163261</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1653831163261</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -145,10 +159,12 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="1401-3-2" />
+     <MESSAGE value="1401-3-3" />
+-    <option name="LAST_COMMIT_MESSAGE" value="1401-3-3" />
++    <MESSAGE value="1401-3-8" />
++    <MESSAGE value="1401-3-8&#10;V2" />
++    <option name="LAST_COMMIT_MESSAGE" value="1401-3-8&#10;V2" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/flytoday$Unittests_for_main_TestCase_test_login.coverage" NAME="Unittests for main.TestCase.test_login Coverage Results" MODIFIED="1653828627340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/flytoday$Unittests_for_main_TestCase_test_hotel.coverage" NAME="Unittests for main.TestCase.test_hotel Coverage Results" MODIFIED="1653829305557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/flytoday$Unittests_for_main_TestCase_test_hotel.coverage" NAME="Unittests for main.TestCase.test_hotel Coverage Results" MODIFIED="1653829347899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: utils_hotel.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from statics import *\r\nfrom locators import *\r\nimport yaml\r\nimport time\r\n\r\n\r\ndef get_data_hotel():\r\n    LOGGER.debug('Trying to read inputs hotel.')\r\n    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:\r\n        try:\r\n            return yaml.safe_load(file)\r\n        except yaml.YAMLError as exc:\r\n            print(exc)\r\n\r\n\r\ndef online_Hotel_test(data_hotel, driverSetup):\r\n    action = ActionChains(driverSetup)\r\n    time.sleep(1)\r\n    hotel_button = driverSetup.find_element('xpath', hotel_button_xpath)\r\n    hotel_button.click()\r\n    LOGGER.debug('Click the hotel.')\r\n    time.sleep(1)\r\n    hotel_city = driverSetup.find_element('xpath', hotelCity_selectBox_xpath)\r\n    hotel_city.click()\r\n    LOGGER.debug('Click the hotel city.')\r\n    action.move_to_element(hotel_city).send_keys(data_hotel.get(0).get('hotelCity')).click().perform()\r\n    time.sleep(1)\r\n    cityList = driverSetup.find_element('xpath', cityList_xpath)\r\n    cities = cityList.find_elements(by=By.CLASS_NAME, value='w-100')\r\n    for city in cities:\r\n        LOGGER.debug('City is reading.')\r\n        if city.text == data_hotel.get(0).get('hotelCity'):\r\n            time.sleep(1)\r\n            action.move_to_element(city).click().perform()\r\n            LOGGER.debug('Select city.')\r\n            break\r\n        else:\r\n            LOGGER.debug('city is out off list.')\r\n    LOGGER.debug('insert hotel city.')\r\n    time.sleep(1)\r\n    datePiker(driverSetup, data_hotel)\r\n\r\n\r\ndef hotelBooking_assertion(driverSetup):\r\n    time.sleep(20)\r\n    hotelList = driverSetup.find_element('xpath', hotelList_list_xpath)\r\n    LOGGER.debug('Assertion is Checking...')\r\n    hotels = hotelList.find_elements(by=By.CLASS_NAME, value='itineray-list_itineraryWrapper__KEXFz')\r\n    assert len(hotels) > 0\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/utils_hotel.py b/utils_hotel.py
+--- a/utils_hotel.py	(revision 2087cb66af0345ed6f2815f2feef564f59e1262d)
++++ b/utils_hotel.py	(date 1653830804315)
+@@ -13,7 +13,13 @@
+             print(exc)
+ 
+ 
+-def online_Hotel_test(data_hotel, driverSetup):
++def hotel_result_search(driverSetup):
++    hotelList = driverSetup.find_element('xpath', hotelList_list_xpath)
++    hotels = hotelList.find_elements(by=By.CLASS_NAME, value='itineray-list_itineraryWrapper__KEXFz')
++    return hotels
++
++
++def hotel_search_test(data_hotel, driverSetup):
+     action = ActionChains(driverSetup)
+     time.sleep(1)
+     hotel_button = driverSetup.find_element('xpath', hotel_button_xpath)
+@@ -25,6 +31,7 @@
+     LOGGER.debug('Click the hotel city.')
+     action.move_to_element(hotel_city).send_keys(data_hotel.get(0).get('hotelCity')).click().perform()
+     time.sleep(1)
++    action = ActionChains(driverSetup)
+     cityList = driverSetup.find_element('xpath', cityList_xpath)
+     cities = cityList.find_elements(by=By.CLASS_NAME, value='w-100')
+     for city in cities:
+@@ -41,9 +48,12 @@
+     datePiker(driverSetup, data_hotel)
+ 
+ 
++def hotel_booking_test(data_hotel, driverSetup):
++    pass
++
++
+ def hotelBooking_assertion(driverSetup):
+     time.sleep(20)
+-    hotelList = driverSetup.find_element('xpath', hotelList_list_xpath)
++    hotels = hotel_result_search(driverSetup)
+     LOGGER.debug('Assertion is Checking...')
+-    hotels = hotelList.find_elements(by=By.CLASS_NAME, value='itineray-list_itineraryWrapper__KEXFz')
+     assert len(hotels) > 0

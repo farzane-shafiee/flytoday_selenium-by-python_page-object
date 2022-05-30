@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from locators import *
 import warnings
 import time
+import yaml
 
 LOGGER = Logger.get_logger(__name__)
 LOGGER.setLevel('DEBUG')
@@ -41,6 +42,36 @@ def tear_down(driverSetup):
     # DRIVER.quit()
 
 
+def get_data_login():
+    """
+    :return: list of dic from yaml file.
+    """
+    LOGGER.debug('Trying to read username and password.')
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_login.yaml', 'r') as file:
+        try:
+            return yaml.safe_load(file)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+
+def get_data_hotel():
+    LOGGER.debug('Trying to read inputs hotel.')
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:
+        try:
+            return yaml.safe_load(file)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+
+def get_data_passenger():
+    LOGGER.debug('Trying to read data passenger.')
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_passenger.yaml', 'r') as file:
+        try:
+            return yaml.safe_load(file)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+
 def datePiker(driverSetup, data_hotel):
     action = ActionChains(driverSetup)
     month = driverSetup.find_element(by=By.XPATH, value=month_list_xpath)
@@ -65,4 +96,3 @@ def datePiker(driverSetup, data_hotel):
     time.sleep(2)
     driverSetup.find_element('xpath', confirmDatePiker_button_xpath).click()
     driverSetup.find_element('xpath', searchButton_button_xpath).click()
-    LOGGER.debug('Search hotel is completed.')

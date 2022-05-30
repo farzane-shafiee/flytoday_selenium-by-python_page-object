@@ -15,22 +15,24 @@ class TestCase(unittest.TestCase):
     chrome_options.add_argument("--headless")
 
     def test_login(self):
-        data = get_data_login()
+        data_login = get_data_login()
         LOGGER.debug('Inputs read completely.')
-        for index in range(len(data)):
+        for index in range(len(data_login)):
             driverSetup = setup()
-            login_test(data, index, driverSetup)
-            login_assertion(data, index, driverSetup)
+            login_test(data_login, index, driverSetup)
+            login_assertion(data_login, index, driverSetup)
 
     def test_hotel(self):
-        # data_login = get_data_login()
-        # LOGGER.debug('Inputs read completely.')
-        # for index in range(len(data_login)):
-        driverSetup = setup()
-        # login_test(data_login, index, driverSetup)
-        data_hotel = get_data_hotel()
-        hotel_search(data_hotel, driverSetup)
-        hotel_booking_assertion(driverSetup)
+        data_login = get_data_login()
+        LOGGER.debug('Inputs read completely.')
+        for index in range(len(data_login)):
+            driverSetup = setup()
+            login_test(data_login, index, driverSetup)
+            data_hotel = get_data_hotel()
+            hotel_search(data_hotel, driverSetup)
+            hotel_booking_assertion(driverSetup)
+            hotel_booking(driverSetup)
+            payment_success(driverSetup)
 
 
 if __name__ == '__main__':
