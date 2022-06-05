@@ -31,7 +31,7 @@ class TestCase(unittest.TestCase):
             data_hotel = get_data_hotel()
             hotel_search(data_hotel, driverSetup)
             hotel_booking_assertion(driverSetup)
-            hotel_booking(driverSetup)
+            hotel_booking(data_hotel, driverSetup)
             payment_success(driverSetup)
 
 

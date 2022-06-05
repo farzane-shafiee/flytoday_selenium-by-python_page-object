@@ -14,8 +14,8 @@ LOGGER.setLevel('DEBUG')
 
 
 def driver_setup():
-    # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
-    driver = webdriver.Chrome('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/chromedriver_win32/chromedriver.exe')
+    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+    # driver = webdriver.Chrome('D:/Farzan/chromedriver_win32/chromedriver.exe')
     return driver
 
 
@@ -47,7 +47,7 @@ def get_data_login():
     :return: list of dic from yaml file.
     """
     LOGGER.debug('Trying to read username and password.')
-    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_login.yaml', 'r') as file:
+    with open('D:/Farzan/flytoday/data_login.yaml', 'r') as file:
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
@@ -56,7 +56,7 @@ def get_data_login():
 
 def get_data_hotel():
     LOGGER.debug('Trying to read inputs hotel.')
-    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:
+    with open('D:/Farzan/flytoday/data_hotel.yaml', 'r') as file:
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
@@ -65,7 +65,7 @@ def get_data_hotel():
 
 def get_data_passenger():
     LOGGER.debug('Trying to read data passenger.')
-    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_passenger.yaml', 'r') as file:
+    with open('D:/Farzan/flytoday/data_passenger.yaml', 'r') as file:
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
@@ -73,6 +73,7 @@ def get_data_passenger():
 
 
 def datePiker(driverSetup, data_hotel):
+    driverSetup.implicitly_wait(10)
     action = ActionChains(driverSetup)
     month = driverSetup.find_element(by=By.XPATH, value=month_list_xpath)
     days = month.find_elements(by=By.CLASS_NAME, value=daysList_className)
@@ -93,6 +94,8 @@ def datePiker(driverSetup, data_hotel):
             break
         else:
             LOGGER.debug('End date is reading.')
-    time.sleep(2)
+
+    driverSetup.execute_script("window.scrollBy(0,200)")
+    # time.sleep(2)
     driverSetup.find_element('xpath', confirmDatePiker_button_xpath).click()
     driverSetup.find_element('xpath', searchButton_button_xpath).click()

@@ -1,35 +1,34 @@
 from statics import *
 from locators import *
-import yaml
 import time
 
 
 def hotel_search(data_hotel, driverSetup):
-    driverSetup.implicitly_wait(20)
+    driverSetup.implicitly_wait(30)
     action = ActionChains(driverSetup)
-    time.sleep(1)
+    # time.sleep(1)
     hotel_button = driverSetup.find_element('xpath', hotel_button_xpath)
     hotel_button.click()
     LOGGER.debug('Click the hotel.')
-    time.sleep(1)
+    # time.sleep(1)
     hotel_city = driverSetup.find_element('xpath', hotelCity_selectBox_xpath)
     hotel_city.click()
     LOGGER.debug('Click the hotel city.')
     action.move_to_element(hotel_city).send_keys(data_hotel.get(0).get('hotelCity')).click().perform()
-    time.sleep(1)
+    # time.sleep(1)
     cityList = driverSetup.find_element('xpath', cityList_xpath)
     cities = cityList.find_elements(by=By.CLASS_NAME, value='w-100')
     for city in cities:
         LOGGER.debug('City is reading.')
         if city.text == data_hotel.get(0).get('hotelCity'):
-            time.sleep(1)
+            # time.sleep(1)
             action.move_to_element(city).click().perform()
             LOGGER.debug('Select city.')
             break
         else:
             LOGGER.debug('city is out off list.')
     LOGGER.debug('insert hotel city.')
-    time.sleep(1)
+    # time.sleep(1)
     datePiker(driverSetup, data_hotel)
     LOGGER.debug('Search hotel is completed.')
     # time.sleep(20)
@@ -71,8 +70,9 @@ def passenger_list(driverSetup):
 
 
 def select_passenger(driverSetup):
-    passengerList = passenger_list(driverSetup)
-    passengerList[0].click()
+    # passengerList = passenger_list(driverSetup)
+    # passengerList[0].click()
+    driverSetup.find_element('xpath', selectPassenger_button_xpath).click()
 
 
 def insert_passenger(driverSetup):
@@ -108,7 +108,7 @@ def scroll_to_find_element(driverSetup, locator, pixel):
     raise Exception(f'The element "{locator}" cannot be found.')
 
 
-def hotel_booking(driverSetup):
+def hotel_booking(data_hotel, driverSetup):
     driverSetup.find_element('xpath', selectHotel_button_xpath).click()
     LOGGER.debug('Hotel is selected.')
 
@@ -127,7 +127,7 @@ def hotel_booking(driverSetup):
     driverSetup.find_element('xpath', showPassengerModal_button_xpath).click()
     time.sleep(1)
 
-    select_passenger(driverSetup) if len(passenger_list(driverSetup)) > 0 else insert_passenger(driverSetup)
+    select_passenger(driverSetup) if data_hotel.get(0).get('number_passenger') == 1 else insert_passenger(driverSetup)
     driverSetup.find_element('xpath', continueHotel_button_xpath).click()
     LOGGER.debug('Adding passenger is successful.')
     time.sleep(5)
