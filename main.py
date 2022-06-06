@@ -1,7 +1,7 @@
 import sys
 import unittest
 
-sys.path.insert(0, 'D:/Farzan/flytoday')
+sys.path.insert(0, 'C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday')
 from utils_hotel import *
 from statics import *
 from utils_login import *
@@ -31,7 +31,7 @@ class TestCase(unittest.TestCase):
             data_hotel = get_data_hotel()
             hotel_search(data_hotel, driverSetup)
             hotel_booking_assertion(driverSetup)
-            hotel_booking(data_hotel, driverSetup)
+            hotel_booking(driverSetup)
             payment_success(driverSetup)
 
 

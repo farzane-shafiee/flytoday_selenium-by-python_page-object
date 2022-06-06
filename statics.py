@@ -14,8 +14,8 @@ LOGGER.setLevel('DEBUG')
 
 
 def driver_setup():
-    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
-    # driver = webdriver.Chrome('D:/Farzan/chromedriver_win32/chromedriver.exe')
+    # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+    driver = webdriver.Chrome('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/chromedriver_win32/chromedriver.exe')
     return driver
 
 
@@ -47,8 +47,9 @@ def get_data_login():
     :return: list of dic from yaml file.
     """
     LOGGER.debug('Trying to read username and password.')
-    with open('D:/Farzan/flytoday/data_login.yaml', 'r') as file:
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_login.yaml', 'r') as file:
         try:
+            LOGGER.debug('Read data login.')
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
             print(exc)
@@ -56,8 +57,9 @@ def get_data_login():
 
 def get_data_hotel():
     LOGGER.debug('Trying to read inputs hotel.')
-    with open('D:/Farzan/flytoday/data_hotel.yaml', 'r') as file:
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:
         try:
+            LOGGER.debug('Read data hotel.')
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
             print(exc)
@@ -65,8 +67,9 @@ def get_data_hotel():
 
 def get_data_passenger():
     LOGGER.debug('Trying to read data passenger.')
-    with open('D:/Farzan/flytoday/data_passenger.yaml', 'r') as file:
+    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_passenger.yaml', 'r') as file:
         try:
+            LOGGER.debug('Read data passenger.')
             return yaml.safe_load(file)
         except yaml.YAMLError as exc:
             print(exc)
@@ -96,6 +99,5 @@ def datePiker(driverSetup, data_hotel):
             LOGGER.debug('End date is reading.')
 
     driverSetup.execute_script("window.scrollBy(0,200)")
-    # time.sleep(2)
     driverSetup.find_element('xpath', confirmDatePiker_button_xpath).click()
     driverSetup.find_element('xpath', searchButton_button_xpath).click()

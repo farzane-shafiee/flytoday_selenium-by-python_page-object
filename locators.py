@@ -22,8 +22,8 @@ hotelList_list_xpath = '//*[@class="col-12 col-lg-9"]/div/div[2]'
 """
 Booking Hotel
 """
-selectHotel_button_xpath = '//button[@data-test="showHotelDetail"] [text()="جزئیات و انتخاب"]'
-selectRoom_button_xpath = '//button[@data-test="showHotelMoreDetail"] [text()="جزییات و رزرو"]'
+selectHotel_button_xpath = '(//*[text() = "جزئیات و انتخاب"])[1]'
+selectRoom_button_xpath = '(//*[text() = "جزییات و رزرو"])[1]'
 selectReserv_button_xpath = '//button[@data-test="hotelReserveButton"] [text()="رزرو"]'
 showPassengerModal_button_xpath = '//button[@data-test="showPassengersModalButton"]'
 passengerTable_table_xpath = '//*[@id="room-0"]/div[2]/div[2]/div[4]'
