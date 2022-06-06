@@ -34,21 +34,13 @@ def hotel_result_search(driverSetup):
     return hotels
 
 
-def hotel_booking_assertion(driverSetup):
-    LOGGER.debug('Assertion is Checking...')
-    hotels = hotel_result_search(driverSetup)
-    assert len(hotels) > 0
-
-
 def adding_adult(driverSetup):
-    element = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]'
-                                                '/div[2]/div/div[2]/div[2]/button[1]')
+    element = driverSetup.find_element('xpath', '(//*[@data-test="addQuantity"])[1]')
     element.click()
 
 
 def adding_child(driverSetup):
-    element = driverSetup.find_element('xpath', '//*[@id="__next"]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]'
-                                                '/div[2]/div/div[3]/div[2]/button[1]')
+    element = driverSetup.find_element('xpath', '(//*[@data-test="addQuantity"])[2]')
     element.click()
 
 

@@ -47,7 +47,7 @@ def get_data_login():
     :return: list of dic from yaml file.
     """
     LOGGER.debug('Trying to read username and password.')
-    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_login.yaml', 'r') as file:
+    with open('data_login.yaml', 'r') as file:
         try:
             LOGGER.debug('Read data login.')
             return yaml.safe_load(file)
@@ -57,7 +57,7 @@ def get_data_login():
 
 def get_data_hotel():
     LOGGER.debug('Trying to read inputs hotel.')
-    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_hotel.yaml', 'r') as file:
+    with open('data_hotel.yaml', 'r') as file:
         try:
             LOGGER.debug('Read data hotel.')
             return yaml.safe_load(file)
@@ -67,7 +67,7 @@ def get_data_hotel():
 
 def get_data_passenger():
     LOGGER.debug('Trying to read data passenger.')
-    with open('C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday/data_passenger.yaml', 'r') as file:
+    with open('data_passenger.yaml', 'r') as file:
         try:
             LOGGER.debug('Read data passenger.')
             return yaml.safe_load(file)

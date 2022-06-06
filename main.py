@@ -1,11 +1,11 @@
 import sys
 import unittest
-
 sys.path.insert(0, 'C:/Users/f.shafiee/Desktop/FlyToday/flytoday/flytoday')
 from utils_hotel import *
 from statics import *
 from utils_login import *
 from selenium.webdriver.chrome.options import Options
+from assertions import *
 
 current_driver = None
 
@@ -28,11 +28,13 @@ class TestCase(unittest.TestCase):
         for index in range(len(data_login)):
             driverSetup = setup()
             login_test(data_login, index, driverSetup)
+            login_assertion(data_login, index, driverSetup)
             data_hotel = get_data_hotel()
             hotel_search(data_hotel, driverSetup)
-            hotel_booking_assertion(driverSetup)
+            hotel_search_assertion(driverSetup)
             hotel_booking(driverSetup)
             payment_success(driverSetup)
+            hotel_booking_assertion(driverSetup)
 
 
 if __name__ == '__main__':
